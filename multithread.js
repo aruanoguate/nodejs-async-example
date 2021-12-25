@@ -31,7 +31,7 @@ method2 = async () => {
             catch (error) {
                 reject(error);
             }
-        }, 3000);
+        }, 2000);
 
         console.log("Ending method2");
     });
