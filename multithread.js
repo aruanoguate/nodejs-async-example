@@ -1,48 +1,48 @@
-method1 = () => {
+delayedMethodThatSucceds = () => {
     return new Promise((resolve, reject) => {
 
-        console.log("Starting method1");
+        console.log("Starting delayedMethodThatSucceds");
 
         setTimeout(() => {
             try {
-                console.log("Working method1");
-                resolve("Success method1");
+                console.log("Working delayedMethodThatSucceds");
+                resolve("Success delayedMethodThatSucceds");
             }
             catch (error) {
                 reject(error);
             }
         }, 4000)
 
-        console.log("Ending method1");
+        console.log("Ending delayedMethodThatSucceds");
     });
 }
 
-method2 = () => {
+delayedMethodThatFails = () => {
     return new Promise((resolve, reject) => {
 
-        console.log("Starting method2");
+        console.log("Starting delayedMethodThatFails");
 
         setTimeout(() => {
             try {
-                console.log("Working method2");
+                console.log("Working delayedMethodThatFails");
                 throw "This is an exception on method 2"
-                resolve("Success method2");
+                resolve("Success delayedMethodThatFails");
             }
             catch (error) {
                 reject(error);
             }
         }, 2000);
 
-        console.log("Ending method2");
+        console.log("Ending delayedMethodThatFails");
     });
 }
 
-method3 = async () => {
-    console.log("Starting method3");
+asyncMethodHandlingMultiplePromises = async () => {
+    console.log("Starting asyncMethodHandlingMultiplePromises");
 
     let promises = []
-    promises.push(method1());
-    promises.push(method2());
+    promises.push(delayedMethodThatSucceds());
+    promises.push(delayedMethodThatFails());
 
     // allSettled will wait for each promise to complete 
     // instead of stopping on the first failure
@@ -52,13 +52,13 @@ method3 = async () => {
         console.log(`status: ${result.status},  value: ${result.value}, reason: ${result.reason}`);
     });
 
-    console.log("Ending method3");
+    console.log("Ending asyncMethodHandlingMultiplePromises");
 }
 
-method4 = () => {
-    console.log("Starting method4");
+methodHandlingOnePromiseOldFashionWay = () => {
+    console.log("Starting methodHandlingOnePromiseOldFashionWay");
 
-    let promise2 = method2();
+    let promise2 = delayedMethodThatFails();
     promise2
         .then((data) => {
             console.log(data);
@@ -66,13 +66,13 @@ method4 = () => {
             console.error(error);
         });
 
-    console.log("Ending method4");
+    console.log("Ending methodHandlingOnePromiseOldFashionWay");
 }
 
-method5 = async () => {
-    console.log("Starting method5");
+methodHandlingOnePromiseNewWay = async () => {
+    console.log("Starting methodHandlingOnePromiseNewWay");
 
-    let promise2 = method2();
+    let promise2 = delayedMethodThatFails();
 
     try {
         let data = await promise2;
@@ -82,10 +82,10 @@ method5 = async () => {
         console.error(error);
     }
 
-    console.log("Ending method5");
+    console.log("Ending methodHandlingOnePromiseNewWay");
 }
 
-// method3();
-method4();
-// method5();
+// asyncMethodHandlingMultiplePromises();
+methodHandlingOnePromiseOldFashionWay();
+// methodHandlingOnePromiseNewWay();
 
