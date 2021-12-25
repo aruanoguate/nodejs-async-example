@@ -1,4 +1,4 @@
-method1 = async () => {
+method1 = () => {
     return new Promise((resolve, reject) => {
 
         console.log("Starting method1");
@@ -17,7 +17,7 @@ method1 = async () => {
     });
 }
 
-method2 = async () => {
+method2 = () => {
     return new Promise((resolve, reject) => {
 
         console.log("Starting method2");
