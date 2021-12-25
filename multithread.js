@@ -46,16 +46,13 @@ method3 = async () => {
 
     // allSettled will wait for each promise to complete 
     // instead of stopping on the first failure
-    let megaPromise = Promise.allSettled(promises);
-    await megaPromise
-        .then(
-            (results) => { 
-                console.log("megaPromise return values:");
-                
-                results.forEach(result => {
-                    console.log(`status: ${result.status},  value: ${result.value}, reason: ${result.reason}`);
+    let allResults = await Promise.allSettled(promises);
+
+    allResults.forEach(result => {
+        console.log(`status: ${result.status},  value: ${result.value}, reason: ${result.reason}`);
+    });
                 }); 
-            });
+    });
 
     console.log("Ending method3");
 }
