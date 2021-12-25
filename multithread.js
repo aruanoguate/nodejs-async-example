@@ -51,11 +51,41 @@ method3 = async () => {
     allResults.forEach(result => {
         console.log(`status: ${result.status},  value: ${result.value}, reason: ${result.reason}`);
     });
-                }); 
-    });
 
     console.log("Ending method3");
 }
 
-method3();
+method4 = () => {
+    console.log("Starting method4");
+
+    let promise2 = method2();
+    promise2
+        .then((data) => {
+            console.log(data);
+        }).catch((error) => {
+            console.error(error);
+        });
+
+    console.log("Ending method4");
+}
+
+method5 = async () => {
+    console.log("Starting method5");
+
+    let promise2 = method2();
+
+    try {
+        let data = await promise2;
+        console.log(data);
+    }
+    catch (error) {
+        console.error(error);
+    }
+
+    console.log("Ending method5");
+}
+
+// method3();
+method4();
+// method5();
 
