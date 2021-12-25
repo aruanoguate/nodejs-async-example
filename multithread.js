@@ -53,7 +53,7 @@ method3 = async () => {
                 console.log("megaPromise return values:");
                 
                 results.forEach(result => {
-                    console.log(`status: ${result.status},  value: ${result.value}`);
+                    console.log(`status: ${result.status},  value: ${result.value}, reason: ${result.reason}`);
                 }); 
             });
 
