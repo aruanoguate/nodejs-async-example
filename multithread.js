@@ -37,28 +37,24 @@ method2 = async () => {
     });
 }
 
-method3 = async function () {
+method3 = async () => {
     console.log("Starting method3");
 
-    let promiseMethod1 = method1();
-    let promiseMethod2 = method2();
-
     let promises = []
-    promises.push(promiseMethod1);
-    promises.push(promiseMethod2);
+    promises.push(method1());
+    promises.push(method2());
 
+    // allSettled will wait for each promise to complete 
+    // instead of stopping on the first failure
     let megaPromise = Promise.allSettled(promises);
     await megaPromise
         .then(
-            (values) => { 
+            (results) => { 
                 console.log("megaPromise return values:");
-                values.forEach(element => {
-                    console.log(`status: ${element.status},  value: ${element.value}`);
+                
+                results.forEach(result => {
+                    console.log(`status: ${result.status},  value: ${result.value}`);
                 }); 
-            })
-        .catch(
-            (errors) => { 
-                console.error("megaPromise errors:" + errors.join(",")); 
             });
 
     console.log("Ending method3");
