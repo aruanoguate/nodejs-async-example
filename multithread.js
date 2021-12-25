@@ -6,7 +6,6 @@ method1 = async () => {
         setTimeout(() => {
             try {
                 console.log("Working method1");
-                throw "This is an exception on method 1"
                 resolve("Success method1");
             }
             catch (error) {
@@ -52,14 +51,14 @@ method3 = async function () {
     await megaPromise
         .then(
             (values) => { 
-                console.log("values:");
+                console.log("megaPromise return values:");
                 values.forEach(element => {
-                    console.log("status: ", element.status, " ,  value: ", element.value);
+                    console.log(`status: ${element.status},  value: ${element.value}`);
                 }); 
             })
         .catch(
             (errors) => { 
-                console.error("errors:" + errors.join(",")); 
+                console.error("megaPromise errors:" + errors.join(",")); 
             });
 
     console.log("Ending method3");
