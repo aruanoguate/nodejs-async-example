@@ -30,8 +30,8 @@ delayedMethodThatFails = () => {
 methodHandlingOnePromiseOldFashionWay = () => {
     console.log("Starting methodHandlingOnePromiseOldFashionWay");
 
-    let promise2 = delayedMethodThatFails();
-    promise2
+    let delayedMethodThatFailsPromise = delayedMethodThatFails();
+    delayedMethodThatFailsPromise
         .then((data) => {
             console.log(data);
         }).catch((error) => {
@@ -44,10 +44,10 @@ methodHandlingOnePromiseOldFashionWay = () => {
 methodHandlingOnePromiseNewWay = async () => {
     console.log("Starting methodHandlingOnePromiseNewWay");
 
-    let promise2 = delayedMethodThatFails();
+    let delayedMethodThatFailsPromise = delayedMethodThatFails();
 
     try {
-        let data = await promise2;
+        let data = await delayedMethodThatFailsPromise;
         console.log(data);
     }
     catch (error) {
